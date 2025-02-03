@@ -12,7 +12,7 @@ let maxDistance = 4000;
 
 // Array to accumulate serial data
 // 시리얼 데이터를 누적 저장할 배열
-let receivedData = [];
+let receive dData = [];
 
 function setup() {
     createCanvas(gridSize * cellSize, gridSize * cellSize);
