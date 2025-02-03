@@ -1,10 +1,16 @@
+// Web Serial object
 // 웹 시리얼 객체
 const serial = new p5.WebSerial();
-let sensorData = new Array(64).fill(0);  // 8×8 데이터 배열
+// 8x8 data array
+// 8×8 데이터 배열
+let sensorData = new Array(64).fill(0);
 let gridSize = 8;
 let cellSize = 50;
-let maxDistance = 4000;  // 최대 거리(mm)
+// Maximum distance (mm)
+// 최대 거리(mm)
+let maxDistance = 4000;
 
+// Array to accumulate serial data
 // 시리얼 데이터를 누적 저장할 배열
 let receivedData = [];
 
@@ -43,6 +49,7 @@ function draw() {
     }
 }
 
+// Create port selection button
 // 포트 선택 버튼 생성
 function makePortButton() {
     let portButton = createButton("Choose Port");
@@ -50,6 +57,7 @@ function makePortButton() {
     portButton.mousePressed(choosePort);
 }
 
+// Open port selection window
 // 포트 선택 창 열기
 function choosePort() {
     serial.requestPort();
@@ -66,23 +74,27 @@ async function openPort() {
     }
 }
 
+// Port connection
 // 포트 연결
 function portConnect() {
     console.log("🔗 Port connected");
     serial.getPorts();
 }
 
+// Port disconnection
 // 포트 연결 해제
 function portDisconnect() {
     console.log("❌ Port disconnected. Reconnecting...");
     setTimeout(() => serial.getPorts(), 2000);
 }
 
+// Port error handling
 // 포트 오류 처리
 function portError(err) {
     alert("Serial port error: " + err);
 }
 
+// Receive serial data (store until all 64 data points are collected)
 // 📡 **시리얼 데이터 수신 (64개 데이터가 다 모일 때까지 저장)**
 function serialEvent() {
     let rawData = serial.readLine();
