@@ -1,2 +1,2 @@
-# ToFImagerSensorVL53L5CX
+# ToF Imager Sensor VL53L5CX
  
